@@ -1,0 +1,15 @@
+
+services:
+  api:
+    build: .
+    container_name: validador-placas-api
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  testes:
+    build:
+      context: .
+      dockerfile: Dockerfile.tests
+    profiles: ["test"]
+    command: ["python", "-m", "pytest", "-v"]
